@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabNavigationView: View {
     var body: some View {
-        TabView(selection: .constant(1)) {
+        TabView(selection: .constant(2)) {
             ContentUnavailableView {
                 Label("Home", systemImage: "house.fill")
             } description: {
@@ -20,15 +20,16 @@ struct TabNavigationView: View {
             }
             .tag(1)
 
-            ContentUnavailableView {
-                Label("Mes plantes", systemImage: "leaf.fill")
-            } description: {
-                Text("Cette page arrive bientôt!")
-            }
-            .tabItem {
-                Label("Mes plantes", systemImage: "leaf.fill")
-            }
-            .tag(2)
+//            ContentUnavailableView {
+//                Label("Mes plantes", systemImage: "leaf.fill")
+//            } description: {
+//                Text("Cette page arrive bientôt!")
+//            }
+            PlantView()
+                .tabItem {
+                    Label("Mes plantes", systemImage: "leaf.fill")
+                }
+                .tag(2)
 
             ContentUnavailableView {
                 Label("Home", systemImage: "house.fill")
@@ -54,5 +55,5 @@ struct TabNavigationView: View {
 }
 
 #Preview {
-    TabNavigationView()
+    TabNavigationView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

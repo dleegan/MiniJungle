@@ -6,15 +6,24 @@
 //
 
 import CoreData
+import Foundation
 
 struct PersistenceController {
     let container: NSPersistentCloudKitContainer
 
     static let shared = PersistenceController()
 
-    @MainActor
     static let preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
+        let viewContext = result.container.viewContext
+        let newPlant = Plant(context: viewContext)
+        newPlant.name = "Plant 1"
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
         return result
     }()
 

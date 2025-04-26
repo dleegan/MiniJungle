@@ -1,23 +1,24 @@
 //
-//  ContentView.swift
+//  NewPlantView.swift
 //  MiniJungle
 //
 //  Created by dleegan on 06/04/2025.
 //
 
-import CoreData
 import SwiftUI
 
-struct ContentView: View {
+struct NewPlantView: View {
     var body: some View {
-        TabNavigationView()
+        VStack {
+            Text("Hello, World!")
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    NewPlantView()
         .environment(
             \.managedObjectContext,
-             PersistenceController.preview.container.viewContext
+            PersistenceController.preview.container.viewContext
         )
 }
